@@ -5,5 +5,5 @@ HOSTNAME = pi4
 all: $(TARGET)
 
 $(TARGET):
-	sh ./scripts/push.sh
+	sh ./script/push.sh
 	ssh -T $(USER)@$(HOSTNAME) "cd $(TARGET) && git pull & exit"

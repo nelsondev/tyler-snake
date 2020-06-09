@@ -13,17 +13,17 @@ def index():
         "tail": "round-bum"
     }
 
-@app.route("/start")
+@app.route("/start", methods=["POST"])
 def start():
     print("START")
     return "ok"
 
-@app.route("/move")
+@app.route("/move", methods=["POST"])
 def move():
     data = request.json
     return { "move": snake.move(data) }
 
-@app.route("/end")
+@app.route("/end", methods=["POST"])
 def end():
     print("END")
     return "ok"
