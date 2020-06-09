@@ -9,7 +9,7 @@ class Snake:
     def __init__(self, data):
         self.update(data)
     
-    def update(self, data)
+    def update(self, data):
         self.id = data["id"]
         self.name = data["name"]
         self.health = data["health"]
@@ -38,14 +38,14 @@ class Board:
 tylers = {}
 
 def start(data):
-    tylers[data["game"]["id"]] = Snake(data["you"])
+    tylers[data['game']['id']] = Snake(data['you'])
 
 def clear(data):
-    del tylers[data["game"]["id"]]
+    del tylers[data['game']['id']]
 
 def update(data):
-    tyler = tylers[data["game"]["id"]]
-    tyler.update(data["you"])
+    tyler = tylers[data['game']['id']]
+    tyler.update(data['you'])
 
 def move(data):
     return "left"

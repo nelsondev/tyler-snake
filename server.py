@@ -15,22 +15,22 @@ def index():
 
 @app.route("/start", methods=["POST"])
 def start():
-    data = request.json
+    data = request.get_json()
     snake.start(data)
-    print(f"START {data["game"]["id"]}")
+    print(f"START {data['game']['id']}")
     return "ok"
 
 @app.route("/move", methods=["POST"])
 def move():
-    data = request.json
+    data = request.get_json()
     move = snake.move(data)
     return { "move": move }
 
 @app.route("/end", methods=["POST"])
 def end():
-    data = request.json
+    data = request.get_json()
     snake.clear(data)
-    print(f"END {data["game"]["id"]}")
+    print(f"END {data['game']['id']}")
     return "ok"
 
 if __name__ == "__main__":
