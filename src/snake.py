@@ -71,7 +71,11 @@ class Snake:
             x = i['x']
             y = i['y']
 
-            a[y][x] = "#"
+            s = list(a[y])
+
+            s[x] = "#"
+
+            a[y] = ''.join(s)
 
         for i in a:
             print(i)
