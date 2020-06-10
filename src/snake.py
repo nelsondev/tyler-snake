@@ -47,7 +47,7 @@ def start(data):
     tylers[data['game']['id']] = Snake(data['you'])
 
 def clear(data):
-    del get_tyler(data)
+    del tylers[data['game']['id']]
 
 def move(data):
     tyler = get_tyler(data)
