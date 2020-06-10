@@ -59,7 +59,7 @@ class Snake:
 
     def register_dangers(self, data):
         board = get_board(data)
-        print(board)
+        print(board.snakes)
 
     def move(self, data):
         self.update(data)
@@ -76,7 +76,7 @@ class Board:
     snakes: list
 
     def __init__(self, data):
-        pass
+        self.update(data)
 
     def update(self, data):
         self.width = data['width']
@@ -108,4 +108,7 @@ def clear(data):
 
 def move(data):
     tyler = get_tyler(data['you'])
+    
+    get_board(data['you']).update(['board'])
+
     return tyler.move(data['you'])
