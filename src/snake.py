@@ -74,7 +74,7 @@ class Snake:
 
         self.dangers = []
         self.dangers.extend(board.bounds)
-        self.dangers.extend(numpy.flatten([a.body for a in board.snakes]))
+        self.dangers.extend(numpy.ndarray.flatten([a.body for a in board.snakes]))
 
     def register_food(self, data):
         pass
