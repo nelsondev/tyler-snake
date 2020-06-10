@@ -79,6 +79,8 @@ class Snake:
     def move(self, data):
         self.register_dangers(data)
 
+        self.print_points()
+
         moves = self.possible_moves()
 
         return random.choice(moves)
