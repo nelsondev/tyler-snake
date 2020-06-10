@@ -81,6 +81,7 @@ class Snake:
     # WEIGHING LOGIC CALLED IN weigh() FUNCTION
     def weigh_dangers(self, direction):
         VALUE = 100
+        future = Move.future_point(direction, self.head)
         return -VALUE if future in self.dangers else VALUE
 
     def weigh_food(self, direction):
