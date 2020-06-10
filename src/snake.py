@@ -54,7 +54,7 @@ class Board:
 tylers = {}
 
 def get_game(data):
-    return data['game']['id']
+    return data['you']['id']
 
 def get_tyler(data):
     return tylers[get_game(data)]['snake']
