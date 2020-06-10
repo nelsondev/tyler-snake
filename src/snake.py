@@ -27,11 +27,13 @@ class Snake:
     length: int
 
     dangers: list
+    weights: list
 
     def __init__(self, data):
         self.dangers = []
+        self.weights = []
         self.update(data)
-    
+        
     def update(self, data):
         self.id = data['id']
         self.name = data['name']
@@ -40,6 +42,7 @@ class Snake:
         self.head = data['head']
         self.length = data['length']
 
+    # GRABBING FRESH POINTS
     def possible_moves(self):
         return [ 'up', 'down', 'left', 'right' ]
 
@@ -51,6 +54,13 @@ class Snake:
             m[i] = 0
         return m
 
+    # WEIGH STACK FOR WEIGHING MOVE PROBABLITY
+    def weigh(self, moves):
+        for direction in moves:
+            for weight in self.weights:
+                moves[direction] += weight(direction)
+
+    # DATA REGISTRATION FOR RELEVANT POINTS 
     def register_dangers(self, data):
         board = get_board(data)
 
@@ -59,30 +69,36 @@ class Snake:
         for i in board.snakes:
             self.dangers.extend(i.body)
 
-    def weigh_dangers(self, moves):
-        WEIGHING_VALUE = 100
+    def register_food(self, data):
+        pass
 
-        print(f"self: {self.body}")
-        for direction in moves:
+    # WEIGHING LOGIC CALLED IN weigh() FUNCTION
+    def weigh_dangers(self, direction):
+        WEIGHING_VALUE = -100
 
-            future = Move.future_point(direction, self.head)
-            print(f"{direction} = {future}")
-            if future in self.dangers:
-                moves[direction] -= WEIGHING_VALUE
+        future = Move.future_point(direction, self.head)
+        if future in self.dangers:
+            return WEIGHING_VALUE
 
-        return moves
+    def weigh_food(self, direction):
+        WEIGHING_VALUE = 0
+        return 0
 
-    def danger(self, data, moves):
+    # LOGIC SETUP
+    def danger(self, data):
         self.register_dangers(data)
-        return self.weigh_dangers(moves)
+        self.weights.append(self.weigh_dangers)
 
     def food(self, data, moves):
-        return moves
+        self.register_food(data)
+        self.weights.append(self.weigh_food)
 
     def move(self, data):
+        self.danger(data)
+        self.food(data)
+
         moves = self.probable_moves()
-        moves = self.danger(data, moves)
-        moves = self.food(data, moves)
+        moves = self.weigh(moves)
 
         print(moves)
 
