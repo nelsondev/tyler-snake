@@ -73,7 +73,7 @@ class Snake:
 
         self.dangers = []
         self.dangers.extend(board.bounds)
-        print([a.body for a in board.snakes])
+        print(a.body for a in board.snakes)
         self.dangers.extend([a.body for a in board.snakes])
 
     def register_food(self, data):
