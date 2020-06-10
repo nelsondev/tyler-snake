@@ -33,7 +33,7 @@ class Snake:
         self.dangers = []
         self.weights = []
         self.update(data)
-        self.add_weights()
+        self.register_weights()
         
     def update(self, data):
         self.id = data['id']
@@ -62,7 +62,8 @@ class Snake:
                 moves[direction] += weight(direction)
         return moves
 
-    def add_weights(self, weight):
+    # REGISTER PROPER WEIGHTS INTO WEIGHT ARRAY
+    def register_weights(self):
         self.weights.append(self.weigh_dangers)
         self.weights.append(self.weigh_food)
 
