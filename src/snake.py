@@ -80,8 +80,8 @@ class Board:
 
     def bounds(self, data):
         self.bounds = []
-        width = data['width']
-        height = data['height']
+        width = int(data['width'])
+        height = int(data['height'])
 
         for i in width:
             self.bounds.append({"x":i,"y":0})
@@ -91,9 +91,9 @@ class Board:
             self.bounds.append({"x":height,"y":i})
 
     def update(self, data):
-        self.width = data['width']
-        self.height = data['height']
-        self.food = data['food']
+        self.width = int(data['width'])
+        self.height = int(data['height'])
+        self.food = int(data['food'])
         self.snakes = []
 
         for i in data['snakes']:
