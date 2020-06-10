@@ -31,12 +31,12 @@ class Snake:
         self.update(data)
     
     def update(self, data):
-        self.id = data['id']
-        self.name = data['name']
-        self.health = data['health']
-        self.body = data['body']
-        self.head = data['head']
-        self.length = data['length']
+        self.id = data['you']['id']
+        self.name = data['you']['name']
+        self.health = data['you']['health']
+        self.body = data['you']['body']
+        self.head = data['you']['head']
+        self.length = data['you']['length']
 
     def possible_moves(self):
         return [ 'up', 'down', 'left', 'right' ]
@@ -110,4 +110,4 @@ def clear(data):
 
 def move(data):
     tyler = get_tyler(data)
-    return tyler.move(data['you'])
+    return tyler.move(data)
