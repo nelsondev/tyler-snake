@@ -65,7 +65,7 @@ class Snake:
         a = []
         for y in range(board.height+1):
             s = " " * board.width
-            a.append[s]
+            a.append(s)
 
         for i in self.dangers:
             x = i['x']
