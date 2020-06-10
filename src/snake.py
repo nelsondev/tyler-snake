@@ -1,5 +1,4 @@
 import random
-import numpy
 
 class Move:
     @staticmethod
@@ -74,7 +73,7 @@ class Snake:
 
         self.dangers = []
         self.dangers.extend(board.bounds)
-        self.dangers.extend(numpy.ndarray.flatten([a.body for a in board.snakes]))
+        self.dangers.extend([a.body for a in board.snakes][0])
 
     def register_food(self, data):
         pass
