@@ -58,7 +58,7 @@ class Snake:
         for i in board.snakes:
             self.dangers.extend(i.body)
 
-    def print_points(self):
+    def print_points(self, data):
 
         board = get_board(data)
 
@@ -79,7 +79,7 @@ class Snake:
     def move(self, data):
         self.register_dangers(data)
 
-        self.print_points()
+        self.print_points(data)
 
         moves = self.possible_moves()
 
