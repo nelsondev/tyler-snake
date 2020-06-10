@@ -67,6 +67,7 @@ def start(data):
 
 def clear(data):
     del tylers[get_game(data)]
+    print(tylers)
 
 def move(data):
     tyler = get_tyler(data)
