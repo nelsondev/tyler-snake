@@ -96,13 +96,8 @@ class Snake:
         moves = self.probable_moves()
         moves = self.weigh(moves)
 
-        maxed = max(moves.items(), key=operator.itemgetter(1))
-
-        print(maxed)
-
+        maxed = max(moves.items(), key=operator.itemgetter(1))[1]
         values = [k for k,v in moves.items() if v == maxed]
-
-        print(values)
 
         move = random.choice(values)
 
