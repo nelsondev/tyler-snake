@@ -10,10 +10,12 @@ class Move:
 
     @staticmethod
     def future_point(direction, point):
-        if direction == "up": point['y'] = point['y'] + 1
-        elif direction == "down": point['y'] = point['y'] - 1
-        elif direction == "left": point['x'] = point['x'] - 1
-        elif direction == "right": point['x'] = point['x'] + 1
+        x = point['x']
+        y = point['y']
+        if direction == "up": y += 1
+        if direction == "down": y -= 1
+        if direction == "left": x -= 1
+        if direction == "right": x += 1
         return point
 
 class Snake:
