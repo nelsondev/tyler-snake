@@ -68,7 +68,7 @@ class Snake:
 
         return moves
 
-    def dangers(self, data, moves):
+    def danger(self, data, moves):
         self.register_dangers(data)
         return self.weigh_dangers(moves)
 
@@ -77,7 +77,7 @@ class Snake:
 
     def move(self, data):
         moves = self.probable_moves()
-        moves = self.dangers(data, moves)
+        moves = self.danger(data, moves)
         moves = self.food(data, moves)
 
         print(moves)
