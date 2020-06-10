@@ -98,7 +98,7 @@ class Snake:
 
         maxed = max(moves.items(), key=operator.itemgetter(1))
 
-        values = [k for k,v in self.moves.items() if v == maxed]
+        values = [k for k,v in moves.items() if v == maxed]
 
         print(values)
 
