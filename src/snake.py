@@ -33,6 +33,7 @@ class Snake:
         self.dangers = []
         self.weights = []
         self.update(data)
+        self.add_weights()
         
     def update(self, data):
         self.id = data['id']
@@ -61,6 +62,10 @@ class Snake:
                 moves[direction] += weight(direction)
         return moves
 
+    def add_weights(self, weight):
+        self.weights.append(self.weigh_dangers)
+        self.weights.append(self.weigh_food)
+
     # DATA REGISTRATION FOR RELEVANT POINTS 
     def register_dangers(self, data):
         board = get_board(data)
@@ -86,18 +91,9 @@ class Snake:
         WEIGHING_VALUE = 0
         return 0
 
-    # LOGIC SETUP
-    def danger(self, data):
-        self.register_dangers(data)
-        self.weights.append(self.weigh_dangers)
-
-    def food(self, data):
-        self.register_food(data)
-        self.weights.append(self.weigh_food)
-
     def move(self, data):
-        self.danger(data)
-        self.food(data)
+        self.register_dangers(data)
+        self.register_food(data)
 
         moves = self.probable_moves()
         moves = self.weigh(moves)
