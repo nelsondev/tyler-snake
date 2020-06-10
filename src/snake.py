@@ -94,10 +94,10 @@ def get_game(data):
     return data['id']
 
 def get_tyler(data):
-    return tylers[get_game(data['you'])]['snake']
+    return tylers[get_game(data)]['snake']
 
 def get_board(data):
-    return tylers[get_game(data['you'])]['board']
+    return tylers[get_game(data)]['board']
 
 
 def start(data):
@@ -107,5 +107,5 @@ def clear(data):
     del tylers[get_game(data['you'])]
 
 def move(data):
-    tyler = get_tyler(data)
+    tyler = get_tyler(data['you'])
     return tyler.move(data['you'])
