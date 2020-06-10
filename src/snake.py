@@ -83,10 +83,10 @@ class Board:
         width = int(data['width'])
         height = int(data['height'])
 
-        for i in range(width+1):
+        for i in range(width+2):
             self.bounds.append({"x":i,"y":-1})
             self.bounds.append({"x":i,"y":width})
-        for i in range(height+1):
+        for i in range(height+2):
             self.bounds.append({"x":-1,"y":i})
             self.bounds.append({"x":height,"y":i})
 
