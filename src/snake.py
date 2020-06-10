@@ -1,5 +1,20 @@
 import random
 
+class Move:
+    @staticmethod
+    def opposite_direction(direction):
+        if direction == "up": return "down"
+        if direction == "down": return "up"
+        if direction == "left": return "right"
+        if direction == "right": return "left"
+
+    @staticmethod
+    def future_point(direction, point):
+        if direction == "up": point['y'] + 1
+        if direction == "down": point['y'] - 1
+        if direction == "left": point['x'] - 1
+        if direction == "right": point['x'] + 1
+        return point
 
 class Snake:
     id: str
@@ -27,15 +42,34 @@ class Snake:
         return [ 'up', 'down', 'left', 'right' ]
 
     def probable_moves(self):
-        pass
+        possible = self.possible_moves()
+
+        m = {}
+        for i in possible:
+            m[i] = 0
+        return m       
+
+    def dangerous_moves(self):
+        probable = self.probable_moves()
+
+        for i in dangers:
+            print(i)
+
+        return m
+
+    def register_dangers(self, data):
+        board = get_board(data)
+        snakes = board.snakes
+
+        print(snakes)
 
     def move(self, data):
         self.update(data)
+        self.register_dangers(data)
 
-        possible = self.possible_moves()
-        probable = self.probable_moves()
-        
-        return random.choice(possible)
+        moves = self.possible_moves()
+
+        return random.choice(moves)
 
 class Board:
     width: int
