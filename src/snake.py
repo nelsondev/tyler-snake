@@ -60,7 +60,9 @@ class Snake:
     def weigh_dangers(self, moves):
         WEIGHING_VALUE = 100
 
+        print(f"self: {self.body}")
         for direction in moves:
+
             future = Move.future_point(direction, self.head)
             print(f"{direction} = {future}")
             if future in self.dangers:
