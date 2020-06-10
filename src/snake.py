@@ -97,8 +97,12 @@ class Snake:
         moves = self.weigh(moves)
 
         maxed = max(moves.items(), key=operator.itemgetter(1))
-        move = random.choice(maxed)
-        print(f"{maxed}: CHOICE: {move}")
+
+        values = [k for k,v in self.moves.items() if v == maxed]
+
+        print(values)
+
+        move = random.choice(values)
 
         return move
 
