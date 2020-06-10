@@ -76,6 +76,7 @@ class Snake:
         return moves
 
     def move(self, data):
+        moves = self.probable_moves()
         moves = self.dangers(data, moves)
         moves = self.food(data, moves)
 
