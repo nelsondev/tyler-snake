@@ -96,7 +96,11 @@ class Snake:
         moves = self.probable_moves()
         moves = self.weigh(moves)
 
-        return random.choice(max(moves.items(), key=operator.itemgetter(1)))
+        maxed = max(moves.items(), key=operator.itemgetter(1))
+        move = random.choice(maxed)
+        print(f"{maxed}: CHOICE: {move}")
+
+        return move
 
 class Board:
     width: int
