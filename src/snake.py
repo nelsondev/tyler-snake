@@ -89,7 +89,7 @@ class Snake:
         self.register_dangers(data)
         self.weights.append(self.weigh_dangers)
 
-    def food(self, data, moves):
+    def food(self, data):
         self.register_food(data)
         self.weights.append(self.weigh_food)
 
