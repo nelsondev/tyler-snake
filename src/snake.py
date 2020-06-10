@@ -93,7 +93,7 @@ class Board:
     def update(self, data):
         self.width = int(data['width'])
         self.height = int(data['height'])
-        self.food = int(data['food'])
+        self.food = data['food']
         self.snakes = []
 
         for i in data['snakes']:
