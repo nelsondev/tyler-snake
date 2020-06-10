@@ -94,12 +94,11 @@ class Snake:
 
         moves = self.probable_moves()
         moves = self.weigh(moves)
+        moves = sorted(moves.items(), lambda=x = x[1], reverse=True)
 
         print(moves)
 
-        moves = self.possible_moves()
-
-        return random.choice(moves)
+        return moves[0][0]
 
 class Board:
     width: int
