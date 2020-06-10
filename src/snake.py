@@ -111,6 +111,6 @@ def move(data):
 
     board.update(data['board'])
 
-    print(board)
+    print(board.snakes)
 
     return tyler.move(data['you'])
