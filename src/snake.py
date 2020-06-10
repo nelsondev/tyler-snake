@@ -26,7 +26,7 @@ class Snake:
         pass
 
     def move(self, data):
-        self.update()
+        self.update(data)
 
         possible = self.possible_moves()
         probable = self.probable_moves()
