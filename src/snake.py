@@ -62,8 +62,7 @@ class Snake:
 
         for direction in moves:
             future = Move.future_point(direction, self.head)
-            for danger in self.dangers:
-                if danger != future: continue
+            if future in self.dangers:
                 moves[direction] -= WEIGHING_VALUE
 
         return moves
