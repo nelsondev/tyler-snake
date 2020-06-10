@@ -96,7 +96,10 @@ class Snake:
         moves = self.probable_moves()
         moves = self.weigh(moves)
 
-        maxed = max(moves.items(), key=operator.itemgetter(1))[0]
+        maxed = max(moves.items(), key=operator.itemgetter(1))
+
+        print(maxed)
+
         values = [k for k,v in moves.items() if v == maxed]
 
         print(values)
