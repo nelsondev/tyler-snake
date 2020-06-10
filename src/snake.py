@@ -60,7 +60,7 @@ class Snake:
 
     def print_points(self):
         for i in self.dangers:
-            print(f"{x}, {y}")
+            print(f"{i['x']}, {i['y']}")
 
     def move(self, data):
         self.register_dangers(data)
