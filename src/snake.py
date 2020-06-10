@@ -94,7 +94,7 @@ class Snake:
 
         moves = self.probable_moves()
         moves = self.weigh(moves)
-        moves = sorted(moves.items(), lambda: x = x[1], reverse=True)
+        moves = sorted(moves.items(), lambda: x == x[1], reverse=True)
 
         print(moves)
 
