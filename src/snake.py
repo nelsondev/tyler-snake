@@ -63,7 +63,7 @@ class Snake:
         board = get_board(data)
 
         a = []
-        for y in range(board.height+1):
+        for y in range(board.height+2):
             s = " " * board.width
             a.append(s)
 
