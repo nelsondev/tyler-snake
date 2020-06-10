@@ -52,17 +52,20 @@ class Snake:
     def dangerous_moves(self):
         probable = self.probable_moves()
 
-        for i in dangers:
+        for i in self.dangers:
             print(i)
 
         return m
 
     def register_dangers(self, data):
         board = get_board(data)
-        print(board.snakes)
+        
+        for i in board.snakes:
+            self.dangers.append(i.body)
 
     def move(self, data):
         self.register_dangers(data)
+        self.dangerous_moves()
 
         moves = self.possible_moves()
 
