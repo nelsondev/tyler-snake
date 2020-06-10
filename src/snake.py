@@ -49,23 +49,19 @@ class Snake:
             m[i] = 0
         return m
 
-    def dangerous_moves(self):
-        probable = self.probable_moves()
-
-        for i in self.dangers:
-            print(i)
-
     def register_dangers(self, data):
         board = get_board(data)
-        
-        print(len(board.snakes))
+        moves = self.probable_moves()
+
+        self.dangers = board.bounds
+
         for i in board.snakes:
-            print(i.id)
             self.dangers.extend(i.body)
 
     def move(self, data):
         self.register_dangers(data)
-        self.dangerous_moves()
+
+        print(f"{self.id} ----> {self.dangers}")
 
         moves = self.possible_moves()
 
@@ -76,9 +72,23 @@ class Board:
     height: int
     food: list
     snakes: list
+    bounds: list
 
     def __init__(self, data):
         self.update(data)
+        self.bounds(data)
+
+    def bounds(self, data):
+        self.bounds = []
+        width = data['width']
+        height = data['height']
+
+        for i in width:
+            self.bounds.append({"x":i,"y":0})
+            self.bounds.append({"x":i,"y":width})
+        for i in height:
+            self.bounds.append({"x":0,"y":i})
+            self.bounds.append({"x":height,"y":i})
 
     def update(self, data):
         self.width = data['width']
