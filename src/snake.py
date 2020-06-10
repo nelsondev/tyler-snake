@@ -58,7 +58,8 @@ class Snake:
         return m
 
     def register_dangers(self, data):
-        pass
+        board = get_board(data)
+        print(board.snakes)
 
     def move(self, data):
         self.update(data)
