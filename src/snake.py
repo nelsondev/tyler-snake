@@ -11,9 +11,9 @@ class Move:
     @staticmethod
     def future_point(direction, point):
         if direction == "up": point['y'] + 1
-        if direction == "down": point['y'] - 1
-        if direction == "left": point['x'] - 1
-        if direction == "right": point['x'] + 1
+        elif direction == "down": point['y'] - 1
+        elif direction == "left": point['x'] - 1
+        elif direction == "right": point['x'] + 1
         return point
 
 class Snake:
@@ -51,39 +51,35 @@ class Snake:
 
     def register_dangers(self, data):
         board = get_board(data)
-        moves = self.probable_moves()
 
         self.dangers = board.bounds
 
         for i in board.snakes:
             self.dangers.extend(i.body)
 
-    def print_points(self, data):
+    def weigh_dangers(self, moves):
+        WEIGHING_VALUE = -100
 
-        board = get_board(data)
+        for direction in moves:
+            future = Move.future_point(direction, self.head)
+            for danger in self.dangers:
+                if danger != future: continue
+                moves[direction] -= WEIGHING_VALUE
 
-        a = []
-        for y in range(board.height+2):
-            s = " " * (board.width+2)
-            a.append(s)
+        return moves
 
-        for i in self.dangers:
-            x = i['x'] + 1
-            y = i['y'] + 1
+    def dangers(self, data, moves):
+        self.register_dangers(data)
+        return self.weigh_dangers(moves)
 
-            s = list(a[y])
-
-            s[x] = "#"
-
-            a[y] = ''.join(s)
-
-        for i in a:
-            print(i)
+    def food(self, data, moves):
+        return moves
 
     def move(self, data):
-        self.register_dangers(data)
+        moves = self.dangers(data, moves)
+        moves = self.food(data, moves)
 
-        self.print_points(data)
+        print(moves)
 
         moves = self.possible_moves()
 
