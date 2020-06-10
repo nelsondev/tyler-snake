@@ -79,6 +79,7 @@ class Snake:
         future = Move.future_point(direction, self.head)
         if future in self.dangers:
             return WEIGHING_VALUE
+        return 0
 
     def weigh_food(self, direction):
         WEIGHING_VALUE = 0
