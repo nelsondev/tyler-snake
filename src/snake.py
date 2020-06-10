@@ -89,17 +89,23 @@ class Snake:
         VALUE = 0
         return VALUE
 
+    # HELPER FUNCTIONS
+    def max_weight(self, moves):
+        return max(moves.items(), key=lambda x: x[1])[1]
+
+    def max_moves(self, moves):
+        max_weight = self.max_weight(moves)
+        return [direction for direction, weight in moves.items() if weight == max_weight]
+
     def move(self, data):
         self.register_dangers(data)
         self.register_food(data)
 
         moves = self.probable_moves()
         moves = self.weigh(moves)
+        moves = self.max_moves(moves)
 
-        maxed = max(moves.items(), key=operator.itemgetter(1))[1]
-        values = [k for k,v in moves.items() if v == maxed]
-
-        move = random.choice(values)
+        move = random.choice(moves)
 
         return move
 
