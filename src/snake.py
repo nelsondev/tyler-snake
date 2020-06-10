@@ -68,8 +68,8 @@ class Snake:
             a.append(s)
 
         for i in self.dangers:
-            x = i['x']
-            y = i['y']
+            x = i['x'] + 1
+            y = i['y'] + 1
 
             s = list(a[y])
 
