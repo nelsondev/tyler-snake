@@ -1,4 +1,5 @@
 import random
+import operator
 
 class Move:
     @staticmethod
@@ -94,11 +95,8 @@ class Snake:
 
         moves = self.probable_moves()
         moves = self.weigh(moves)
-        moves = sorted(moves.items(), lambda: x == x[1], reverse=True)
 
-        print(moves)
-
-        return moves[0][0]
+        return max(moves.items(), key=operator.itemgetter(1))[0]
 
 class Board:
     width: int
