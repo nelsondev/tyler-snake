@@ -31,12 +31,12 @@ class Snake:
         self.update(data)
     
     def update(self, data):
-        self.id = data['you']['id']
-        self.name = data['you']['name']
-        self.health = data['you']['health']
-        self.body = data['you']['body']
-        self.head = data['you']['head']
-        self.length = data['you']['length']
+        self.id = data['id']
+        self.name = data['name']
+        self.health = data['health']
+        self.body = data['body']
+        self.head = data['head']
+        self.length = data['length']
 
     def possible_moves(self):
         return [ 'up', 'down', 'left', 'right' ]
@@ -47,7 +47,7 @@ class Snake:
         m = {}
         for i in possible:
             m[i] = 0
-        return m       
+        return m
 
     def dangerous_moves(self):
         probable = self.probable_moves()
@@ -58,10 +58,7 @@ class Snake:
         return m
 
     def register_dangers(self, data):
-        board = get_board(data)
-        snakes = board.snakes
-
-        print(snakes)
+        pass
 
     def move(self, data):
         self.update(data)
@@ -93,21 +90,21 @@ class Board:
 tylers = {}
 
 def get_game(data):
-    return data['you']['id']
+    return data['id']
 
 def get_tyler(data):
-    return tylers[get_game(data)]['snake']
+    return tylers[get_game(data['you'])]['snake']
 
 def get_board(data):
-    return tylers[get_game(data)]['board']
+    return tylers[get_game(data['you'])]['board']
 
 
 def start(data):
-    tylers[get_game(data)] = { "snake" : Snake(data), "board": Board(data['board']) }
+    tylers[get_game(data['you'])] = { "snake" : Snake(data['you']), "board": Board(data['board']) }
 
 def clear(data):
-    del tylers[get_game(data)]
+    del tylers[get_game(data['you'])]
 
 def move(data):
     tyler = get_tyler(data)
-    return tyler.move(data)
+    return tyler.move(data['you'])
