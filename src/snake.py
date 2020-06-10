@@ -108,7 +108,5 @@ def clear(data):
 
 def move(data):
     tyler = get_tyler(data['you'])
-    
-    get_board(data['you']).update(['board'])
 
     return tyler.move(data['you'])
