@@ -1,5 +1,6 @@
 import random
 
+
 class Snake:
     id: str
     name: str
@@ -8,7 +9,10 @@ class Snake:
     head: dict
     length: int
 
+    dangers: list
+
     def __init__(self, data):
+        self.dangers = []
         self.update(data)
     
     def update(self, data):
@@ -51,6 +55,7 @@ class Board:
         for i in data['snakes']:
             self.snakes.append(Snake(i))
 
+
 tylers = {}
 
 def get_game(data):
@@ -61,6 +66,7 @@ def get_tyler(data):
 
 def get_board(data):
     return tylers[get_game(data)]['board']
+
 
 def start(data):
     tylers[get_game(data)] = { "snake" : Snake(data['you']), "board": Board(data['board']) }

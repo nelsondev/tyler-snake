@@ -17,7 +17,7 @@ def index():
 def start():
     data = request.get_json()
     snake.start(data)
-    print(f"START {data['game']['id']}")
+    print(f"START {data['you']['id']}")
     return "ok"
 
 @app.route("/move", methods=["POST"])
@@ -30,7 +30,7 @@ def move():
 def end():
     data = request.get_json()
     snake.clear(data)
-    print(f"END {data['game']['id']}")
+    print(f"END {data['you']['id']}")
     return "ok"
 
 if __name__ == "__main__":
