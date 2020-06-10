@@ -1,3 +1,5 @@
+import random
+
 class Snake:
     id: str
     name: str
@@ -17,8 +19,19 @@ class Snake:
         self.head = data["head"]
         self.length = data["length"]
 
+    def possible_moves(self):
+        return [ 'up', 'down', 'left', 'right' ]
+
+    def probable_moves(self):
+        pass
+
     def move(self, data):
         self.update()
+
+        possible = self.possible_moves()
+        probable = self.probable_moves()
+        
+        return random.choice(possible)
 
 class Board:
     width: int
@@ -29,7 +42,7 @@ class Board:
     def __init__(self, data):
         pass
 
-    def update_all(self, data):
+    def update(self, data):
         self.width = data["width"]
         self.height = data["height"]
         self.food = data["food"]
@@ -40,14 +53,20 @@ class Board:
 
 tylers = {}
 
+def get_game(data):
+    return data['game']['id']
+
 def get_tyler(data):
-    return tylers[data['game']['id']]
+    return tylers[get_game()]['snake']
+
+def get_board(data):
+    return tylers[get_game()]['board']
 
 def start(data):
-    tylers[data['game']['id']] = Snake(data['you'])
+    tylers[get_game()] = { "snake" : Snake(data['you']), "board": Board(data['board']) }
 
 def clear(data):
-    del tylers[data['game']['id']]
+    del tylers[get_game()]
 
 def move(data):
     tyler = get_tyler(data)
