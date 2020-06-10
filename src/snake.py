@@ -58,10 +58,14 @@ class Snake:
         for i in board.snakes:
             self.dangers.extend(i.body)
 
+    def print_points(self):
+        for i in self.dangers:
+            print(f"{x}, {y}")
+
     def move(self, data):
         self.register_dangers(data)
 
-        print(f"{self.id} ----> {self.dangers}")
+        self.print_points()
 
         moves = self.possible_moves()
 
