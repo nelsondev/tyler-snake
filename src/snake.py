@@ -58,7 +58,7 @@ class Snake:
             self.dangers.extend(i.body)
 
     def weigh_dangers(self, moves):
-        WEIGHING_VALUE = -100
+        WEIGHING_VALUE = 100
 
         for direction in moves:
             future = Move.future_point(direction, self.head)
