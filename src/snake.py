@@ -59,7 +59,8 @@ class Snake:
         board = get_board(data)
         
         for i in board.snakes:
-            self.dangers.append(i.body)
+            print(i.id)
+            self.dangers.extend(i.body)
 
     def move(self, data):
         self.register_dangers(data)
