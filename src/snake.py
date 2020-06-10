@@ -70,4 +70,4 @@ def clear(data):
 
 def move(data):
     tyler = get_tyler(data)
-    return tyler.move(data)
+    return tyler.move(data['you'])
