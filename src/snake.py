@@ -103,7 +103,7 @@ def get_board(data):
 
 
 def start(data):
-    tylers[get_game(data)] = { "snake" : Snake(data['you']), "board": Board(data['board']) }
+    tylers[get_game(data)] = { "snake" : Snake(data), "board": Board(data['board']) }
 
 def clear(data):
     del tylers[get_game(data)]
