@@ -58,6 +58,7 @@ class Snake:
     def register_dangers(self, data):
         board = get_board(data)
         
+        print(len(board.snakes))
         for i in board.snakes:
             print(i.id)
             self.dangers.extend(i.body)
