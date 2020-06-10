@@ -16,7 +16,7 @@ class Move:
         if direction == "down": y -= 1
         if direction == "left": x -= 1
         if direction == "right": x += 1
-        return point
+        return {"x": x, "y": y}
 
 class Snake:
     id: str
