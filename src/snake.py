@@ -59,7 +59,7 @@ class Snake:
 
     def register_dangers(self, data):
         board = get_board(data)
-        print(board.snakes)
+        print(board)
 
     def move(self, data):
         self.update(data)
