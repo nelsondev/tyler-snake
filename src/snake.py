@@ -12,12 +12,12 @@ class Snake:
         self.update(data)
     
     def update(self, data):
-        self.id = data["id"]
-        self.name = data["name"]
-        self.health = data["health"]
-        self.body = data["body"]
-        self.head = data["head"]
-        self.length = data["length"]
+        self.id = data['id']
+        self.name = data['name']
+        self.health = data['health']
+        self.body = data['body']
+        self.head = data['head']
+        self.length = data['length']
 
     def possible_moves(self):
         return [ 'up', 'down', 'left', 'right' ]
@@ -43,12 +43,12 @@ class Board:
         pass
 
     def update(self, data):
-        self.width = data["width"]
-        self.height = data["height"]
-        self.food = data["food"]
+        self.width = data['width']
+        self.height = data['height']
+        self.food = data['food']
         self.snakes = []
 
-        for i in data["snakes"]:
+        for i in data['snakes']:
             self.snakes.append(Snake(i))
 
 tylers = {}
