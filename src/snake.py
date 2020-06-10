@@ -103,8 +103,8 @@ class Board:
 
     def bounds(self, data):
         self.bounds = []
-        width = int(data['width']) + 1
-        height = int(data['height']) + 1
+        width = int(data['width'])
+        height = int(data['height'])
 
         for i in range(width):
             self.bounds.append({"x":i,"y":-1})
