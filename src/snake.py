@@ -55,8 +55,6 @@ class Snake:
         for i in self.dangers:
             print(i)
 
-        return m
-
     def register_dangers(self, data):
         board = get_board(data)
         
