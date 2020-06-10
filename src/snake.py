@@ -59,6 +59,7 @@ class Snake:
         for direction in moves:
             for weight in self.weights:
                 moves[direction] += weight(direction)
+        return moves
 
     # DATA REGISTRATION FOR RELEVANT POINTS 
     def register_dangers(self, data):
