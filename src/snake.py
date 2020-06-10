@@ -109,6 +109,8 @@ def move(data):
     tyler = get_tyler(data['you'])
     board = get_board(data['you'])
 
+    board.update(data['board'])
+
     print(board)
 
     return tyler.move(data['you'])
