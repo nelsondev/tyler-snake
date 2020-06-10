@@ -71,26 +71,21 @@ class Snake:
     def register_dangers(self, data):
         board = get_board(data)
 
-        self.dangers = board.bounds
-
-        for i in board.snakes:
-            self.dangers.extend(i.body)
+        self.dangers = []
+        self.dangers.extend(board.bounds)
+        self.dangers.extend([a.body for a in board.snakes])
 
     def register_food(self, data):
         pass
 
     # WEIGHING LOGIC CALLED IN weigh() FUNCTION
     def weigh_dangers(self, direction):
-        WEIGHING_VALUE = -100
-
-        future = Move.future_point(direction, self.head)
-        if future in self.dangers:
-            return WEIGHING_VALUE
-        return 0
+        VALUE = 100
+        return -VALUE if future in self.dangers else VALUE
 
     def weigh_food(self, direction):
-        WEIGHING_VALUE = 0
-        return 0
+        VALUE = 0
+        return VALUE
 
     def move(self, data):
         self.register_dangers(data)
