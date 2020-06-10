@@ -17,6 +17,9 @@ class Snake:
         self.head = data["head"]
         self.length = data["length"]
 
+    def move(self, data):
+        self.update()
+
 class Board:
     width: int
     height: int
@@ -37,15 +40,15 @@ class Board:
 
 tylers = {}
 
+def get_tyler(data):
+    return tylers[data['game']['id']]
+
 def start(data):
     tylers[data['game']['id']] = Snake(data['you'])
 
 def clear(data):
-    del tylers[data['game']['id']]
-
-def update(data):
-    tyler = tylers[data['game']['id']]
-    tyler.update(data['you'])
+    del get_tyler(data)
 
 def move(data):
-    return "left"
+    tyler = get_tyler(data)
+    return tyler.move(data)
