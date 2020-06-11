@@ -97,7 +97,7 @@ class Snake:
         return VALUE if future in self.dangers else 0
 
     def weigh_split(self, direction):
-        VALUE = 10
+        VALUE = 3
         result = 0
         future = Move.future_point(direction, self.head)
         while not future in self.dangers:
@@ -109,7 +109,7 @@ class Snake:
         return result
 
     def weigh_future_split(self, direction):
-        VALUE = 5
+        VALUE = 2
         result = 0
         future = Move.future_point(direction, self.head)
         future = Move.future_point(direction, future)
