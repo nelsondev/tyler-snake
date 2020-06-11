@@ -120,7 +120,7 @@ class Snake:
         return result
 
     def weigh_food(self, direction):
-        VALUE = 15
+        VALUE = 150
         result = 0
 
         future = Move.future_point(direction, self.head)
@@ -128,6 +128,7 @@ class Snake:
             future = Move.future_point(direction, future)
             if not future in self.winners: continue
             result += VALUE
+            break
 
         return result
 
