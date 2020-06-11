@@ -29,12 +29,14 @@ class Snake:
     length: int
 
     dangers: list
+    winners: list
     weights: list
     
     history: list
 
     def __init__(self, data):
         self.dangers = []
+        self.winners = []
         self.weights = []
         self.history = []
         self.update(data)
@@ -83,7 +85,10 @@ class Snake:
             self.dangers.extend(snake.body)
 
     def register_food(self, data):
-        pass
+        board = get_board(data)
+
+        self.winners = []
+        self.winners.extend(board.food)
 
     # WEIGHING LOGIC CALLED IN weigh() FUNCTION
     def weigh_dangers(self, direction):
@@ -115,8 +120,15 @@ class Snake:
         return result
 
     def weigh_food(self, direction):
-        VALUE = 0
-        # comment
+        VALUE = 5 * (1/self.health)
+        result = 0
+
+        future = Move.future_point(direction, self.head)
+        while not future in self.dangers:
+            if not future in self.winners: continue
+            future = Move.future_point(direction, future)
+            result += VALUE
+
         return VALUE
 
     # HELPER FUNCTIONS
