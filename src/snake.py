@@ -133,7 +133,6 @@ class Snake:
             if not future in self.winners: continue
             result += VALUE
             self.bias = direction
-            break
 
         return result
 
