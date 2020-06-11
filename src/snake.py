@@ -106,7 +106,7 @@ class Snake:
             future = Move.future_point(direction, future)
             result += VALUE
 
-        result += self.weigh_future_split(direction)
+        # result += self.weigh_future_split(direction)
 
         return result
 
