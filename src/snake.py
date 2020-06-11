@@ -125,8 +125,8 @@ class Snake:
 
         future = Move.future_point(direction, self.head)
         while not future in self.dangers:
-            if not future in self.winners: continue
             future = Move.future_point(direction, future)
+            if not future in self.winners: continue
             result += VALUE
 
         return result
