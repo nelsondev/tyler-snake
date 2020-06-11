@@ -27,6 +27,7 @@ class Snake:
     body: list
     head: dict
     length: int
+    bias: str
 
     dangers: list
     winners: list
@@ -74,6 +75,7 @@ class Snake:
         self.weights.append(self.weigh_dangers)
         self.weights.append(self.weigh_split)
         self.weights.append(self.weigh_food)
+        self.weights.append(self.weigh_bias)
 
     # DATA REGISTRATION FOR RELEVANT POINTS 
     def register_dangers(self, data):
@@ -97,7 +99,7 @@ class Snake:
         return VALUE if future in self.dangers else 0
 
     def weigh_split(self, direction):
-        VALUE = 3
+        VALUE = 10
         result = 0
         future = Move.future_point(direction, self.head)
         while not future in self.dangers:
@@ -109,7 +111,7 @@ class Snake:
         return result
 
     def weigh_future_split(self, direction):
-        VALUE = 2
+        VALUE = 3
         result = 0
         future = Move.future_point(direction, self.head)
         future = Move.future_point(direction, future)
@@ -123,13 +125,21 @@ class Snake:
         VALUE = 500 * int(1/self.health)
         result = 0
 
+        if self.health > 80: self.bias = ""
+
         future = Move.future_point(direction, self.head)
         while not future in self.dangers:
             future = Move.future_point(direction, future)
             if not future in self.winners: continue
             result += VALUE
+            self.bias = direction
+            break
 
         return result
+
+    def weigh_bias(self, direction):
+        VALUE = 150
+        return VALUE if self.bias == direction else 0
 
     # HELPER FUNCTIONS
     def max_weight(self, moves):
