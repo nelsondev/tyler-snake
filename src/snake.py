@@ -76,6 +76,7 @@ class Snake:
 
         self.dangers = []
         self.dangers.extend(board.bounds)
+        print(f"SNAKES: {[a.body for a in board.snakes][0]}")
         self.dangers.extend([a.body for a in board.snakes][0])
 
     def register_food(self, data):
@@ -94,8 +95,6 @@ class Snake:
         while not future in self.dangers:
             future = Move.future_point(direction, future)
             result += VALUE
-        else:
-            result = 0
         return result
 
     def weigh_food(self, direction):
