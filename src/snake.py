@@ -77,6 +77,7 @@ class Snake:
         self.dangers = []
         self.dangers.extend(board.bounds)
         print(f"SNAKES: {[a.body for a in board.snakes][0]}")
+        print(f"SNAKES ACTUAL: {board.snakes}")
         self.dangers.extend([a.body for a in board.snakes][0])
 
     def register_food(self, data):
