@@ -116,6 +116,7 @@ class Snake:
 
     def weigh_food(self, direction):
         VALUE = 0
+        # comment
         return VALUE
 
     # HELPER FUNCTIONS
