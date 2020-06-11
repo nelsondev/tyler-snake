@@ -94,6 +94,8 @@ class Snake:
         while not future in self.dangers:
             future = Move.future_point(direction, future)
             result += VALUE
+        else:
+            result = 0
         return result
 
     def weigh_food(self, direction):
