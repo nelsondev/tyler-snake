@@ -114,6 +114,9 @@ class Snake:
 
         moves = self.probable_moves()
         moves = self.weigh(moves)
+
+        print(moves)
+
         moves = self.max_moves(moves)
 
         return random.choice(moves)
