@@ -30,10 +30,13 @@ class Snake:
 
     dangers: list
     weights: list
+    
+    history: list
 
     def __init__(self, data):
         self.dangers = []
         self.weights = []
+        self.history = []
         self.update(data)
         self.register_weights()
         
@@ -95,6 +98,19 @@ class Snake:
         while not future in self.dangers:
             future = Move.future_point(direction, future)
             result += VALUE
+
+        result += self.weigh_future_split(direction)
+
+        return result
+
+    def weigh_future_split(self, direction):
+        VALUE = 10
+        result = 0
+        future = Move.future_point(direction, self.head)
+        while not future in self.dangers:
+            future = Move.future_point(direction, future)
+            result += VALUE
+
         return result
 
     def weigh_food(self, direction):
@@ -119,8 +135,11 @@ class Snake:
         print(moves)
 
         moves = self.max_moves(moves)
+        moves = random.choice(moves)
 
-        return random.choice(moves)
+        self.history.append(move)
+
+        return moves
 
 class Board:
     width: int
