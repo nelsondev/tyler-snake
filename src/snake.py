@@ -109,7 +109,7 @@ class Snake:
         return result
 
     def weigh_future_split(self, direction):
-        VALUE = 10
+        VALUE = 5
         result = 0
         future = Move.future_point(direction, self.head)
         future = Move.future_point(direction, future)
@@ -120,7 +120,7 @@ class Snake:
         return result
 
     def weigh_food(self, direction):
-        VALUE = 150
+        VALUE = 400 * (1/self.health)
         result = 0
 
         future = Move.future_point(direction, self.head)
