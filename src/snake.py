@@ -120,7 +120,7 @@ class Snake:
         return result
 
     def weigh_food(self, direction):
-        VALUE = 400 * int(1/self.health)
+        VALUE = 500 * int(1/self.health)
         result = 0
 
         future = Move.future_point(direction, self.head)
