@@ -107,6 +107,7 @@ class Snake:
         VALUE = 10
         result = 0
         future = Move.future_point(direction, self.head)
+        future = Move.future_point(direction, self.head)
         while not future in self.dangers:
             future = Move.future_point(direction, future)
             result += VALUE
