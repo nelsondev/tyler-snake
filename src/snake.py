@@ -1,6 +1,7 @@
 import random
 import operator
 
+
 class Move:
     @staticmethod
     def opposite_direction(direction):
@@ -66,6 +67,7 @@ class Snake:
     # REGISTER PROPER WEIGHTS INTO WEIGHT ARRAY
     def register_weights(self):
         self.weights.append(self.weigh_dangers)
+        self.weights.append(self.weigh_split)
         self.weights.append(self.weigh_food)
 
     # DATA REGISTRATION FOR RELEVANT POINTS 
@@ -84,6 +86,15 @@ class Snake:
         VALUE = 100
         future = Move.future_point(direction, self.head)
         return -VALUE if future in self.dangers else VALUE
+
+    def weigh_split(self, direction):
+        VALUE = 10
+        result = 0
+        future = Move.future_point(direction, self.head)
+        while not future in self.dangers:
+            future = Move.future_point(direction, future)
+            result += VALUE
+        return result
 
     def weigh_food(self, direction):
         VALUE = 0
@@ -105,9 +116,7 @@ class Snake:
         moves = self.weigh(moves)
         moves = self.max_moves(moves)
 
-        move = random.choice(moves)
-
-        return move
+        return random.choice(moves)
 
 class Board:
     width: int
