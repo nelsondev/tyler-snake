@@ -120,7 +120,7 @@ class Snake:
         return result
 
     def weigh_food(self, direction):
-        VALUE = 5 * int(1/self.health)
+        VALUE = 5 * self.health
         result = 0
 
         future = Move.future_point(direction, self.head)
@@ -129,7 +129,7 @@ class Snake:
             future = Move.future_point(direction, future)
             result += VALUE
 
-        return VALUE
+        return result
 
     # HELPER FUNCTIONS
     def max_weight(self, moves):
